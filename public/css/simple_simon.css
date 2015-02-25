@@ -1,11 +1,17 @@
 h2{
 	font-size: 40px;
 	font-weight: bold;
-	text-indent: 220px;
+	text-indent: 170px;
 	text-decoration: underline;
 }
+#start{
+	background-color: #000;
+	color:#ec0a9e;
+	font-size: 20px;
+	position: absolute; left: 250px;
+}
 #container{
-	border: 4px solid black;
+	border: 6px solid black;
 	height: 600px;
 	width: 600px;
 	background-image: url(/img/colorful_aurora.jpg);
@@ -37,6 +43,6 @@ h2{
 	height: 250px;
 	width: 250px;
 	margin: 25px;
-	/*opacity: .5*/
+	opacity: .4
 
 }
