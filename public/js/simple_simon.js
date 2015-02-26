@@ -25,38 +25,61 @@ var randomSquare = getNewSquare();
 
 // Start Simon Game
 function playGame(event){
+	getNewSquare();
 	console.log(event.target.id);
 
 	// set this function to fire the game to start
 }
 	// Randomly generate a new square for game
-	// function executes
+	// function executes is being called by playGame()
 function getNewSquare() {
     var random = Math.floor( Math.random() * 4);
     console.log(random + " This is simon's selection")
     gameSelection.push(random);
-    // console.log(gameSelection + " This is the array for simon");
-   
-     return allSimonSquares[random];
+   animateSquare(gameSelection);
+
+    // return allSimonSquares[random];
     // fade color in & out once square is generated
     // perhaps some set interval or timeout?
 	}
 
 
-// function executes
-function animateSquare() {
+// function executes is being called by the getNewSquare()
 
-	var randomSquare = getNewSquare();
-	randomSquare.style.opacity = "1";
+function animateSquare(gameSelection) {
+	var i = 0;
+	var interval = setInterval(function() {
+		var currentSquare = allSimonSquares[gameSelection[i]];
+		currentSquare.style.opacity = "1";
+		i++;
 
-	var fadeOutTimerId = setTimeout(function(){
-	randomSquare.style.opacity = "0.5";
+		setTimeout(function(){
+			currentSquare.style.opacity = "0.5";
+		}, 400);
+
+		if (i >= gameSelection.length){
+			clearInterval(interval);
+		}
 	}, 900);
-
-
-
-
 }
+
+	
+
+
+function userSelection(event) {
+	var usersChoice = event.target.id;
+	console.log(usersChoice);
+	playerSelection.push(usersChoice);
+	 // return (usersChoice);
+}
+
+function simonSelection() {
+	animateSquare();
+	gameSelection.push(random);
+}
+
+
+
 
 
 
@@ -76,14 +99,6 @@ function animateSquare() {
 
 //Currently logs what square the user selected
 // function does not execute
-function userSelection(event) {
-	var usersChoice = event.target.id;
-	console.log(usersChoice);
-	playerSelection.push(usersChoice);
-	 // return (usersChoice);
-}
-
-
 
 // function checkScore() {
 	// iterate(cycle) through array
