@@ -1,21 +1,27 @@
 h2{
-	font-size: 40px;
+	font-size: 50px;
 	font-weight: bold;
-	text-indent: 170px;
+	text-indent: 450px;
 	text-decoration: underline;
 }
 #start{
 	background-color: #000;
 	color:#ec0a9e;
-	font-size: 20px;
-	position: absolute; left: 250px;
+	font-size: 30px;
+	position: absolute; left: 100px;
+}
+#round{
+	background-color: #000;
+	color: #ec0a9e;
+	font-size: 30px;
+	position: relative; left: 1100px;
 }
 #container{
 	border: 6px solid black;
 	height: 600px;
 	width: 600px;
 	background-image: url(/img/colorful_aurora.jpg);
-
+	margin-left: 320px;
 }
 
 #square1{
@@ -43,6 +49,7 @@ h2{
 	height: 250px;
 	width: 250px;
 	margin: 25px;
-	opacity: .4
+	opacity: .4;
+	border-radius: 10px;
 
 }

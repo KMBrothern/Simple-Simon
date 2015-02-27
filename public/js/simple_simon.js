@@ -19,29 +19,28 @@ aqua.addEventListener('click', userSelection, false)
 purple.addEventListener('click', userSelection, false)
 lime.addEventListener('click', userSelection, false)
 
-var randomSquare = getNewSquare();
 
 
 
 // Start Simon Game
 function playGame(event){
 	getNewSquare();
-	console.log(event.target.id);
+	// console.log(event.target.id);
 
 	// set this function to fire the game to start
 }
 	// Randomly generate a new square for game
 	// function executes is being called by playGame()
 function getNewSquare() {
-    var random = Math.floor( Math.random() * 4);
-    console.log(random + " This is simon's selection")
-    gameSelection.push(random);
+   var random = Math.floor( Math.random() * 4);
+   console.log(random + " This is simon's selection");
+   gameSelection.push(random);
    animateSquare(gameSelection);
 
     // return allSimonSquares[random];
     // fade color in & out once square is generated
     // perhaps some set interval or timeout?
-	}
+}
 
 
 // function executes is being called by the getNewSquare()
@@ -66,17 +65,35 @@ function animateSquare(gameSelection) {
 	
 
 
-function userSelection(event) {
-	var usersChoice = event.target.id;
-	console.log(usersChoice);
+function userSelection() {
+	var usersChoice = event.target.attributes["data-value"].value;
+	console.log(usersChoice + " This is the user's choice");
 	playerSelection.push(usersChoice);
-	 // return (usersChoice);
+	 
+	var i = 0;
+	var interval = setInterval(function() {
+		// var a = playerSelection[i];
+		var userSquare = document.getElementsByClassName('allSquares')[playerSelection[i]];
+		console.log(userSquare);
+		userSquare.style.opacity = "1";
+		i++;
+
+		setTimeout(function(){
+			userSquare.style.opacity = "0.5";
+		}, 400);
+
+		if (i >= playerSelection.length){
+			clearInterval(interval);
+		}
+		// checkScore();
+	}, 700);
+
+	// playerSelection = [];
+	checkScore();
 }
 
-function simonSelection() {
-	animateSquare();
-	gameSelection.push(random);
-}
+
+
 
 
 
@@ -93,34 +110,31 @@ function simonSelection() {
 // 		// push user's choice onto playerSelection []
 // 		// clearTimeout if user chose under 2 secs
 
-// 	}, 2000);
+// 	}, 1500);
 // }
 
 
 //Currently logs what square the user selected
 // function does not execute
 
-// function checkScore() {
+ function checkScore() {
 	// iterate(cycle) through array
-// for (var i = 0; i < allSimonSquares.length; i++) {
-//  	allSimonSquares[i]
+	 for (var i = 0; i < playerSelection.length; i++) {
 
+		if(gameSelection[i] != playerSelection[i]){
+			console.log('No match! End game.');
+			return;
+		
+			}
+		}
+		if (playerSelection.length == gameSelection.length) {
+			console.log('Keep the game going')
+			playerSelection=[];
+			playGame();
+			
 
-//  	if(gameSelection == playerSelection){
-// 		fire- animateSquare();
-// 		 and add that new square onto array gameSelection[] w/ .push
-// 		 gameSelection.push(whatever the new square is);
-
-// 	}
-// } else {
-// 	// end game and show score
-// }
-// 	console.log(i);
-
- 
- // };
-
-
+		};
+}
 
 
 
@@ -129,10 +143,5 @@ function simonSelection() {
 
 
 
-// Continue randomly selecting colored squares adding the new 
-// random selection--.push onto an array??
-// Each time a new color is added to the sequence let user "click"
-// the sequence in the order it was played
-// If user gets sequence correct, {then add another color to selection}
-// else{end game and display # of rounds correct = score}
-// Keep track of how many rounds the user has gotten correct until game ends
+
+
